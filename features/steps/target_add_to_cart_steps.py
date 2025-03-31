@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-import time
+from selenium.webdriver.support import expected_conditions as EC
 
 
 SEARCH_FIELD = (By.ID, 'search')
@@ -11,30 +11,32 @@ VIEW_CART_CHECKOUT_BTN = (By.LINK_TEXT, "View cart & check out")
 CART_ITEM_TITLE = (By.CSS_SELECTOR, "a[data-test='cartItem-linked-title']")
 
 
-@when("user searches for product")
-def search_product(context):
-    context.driver.find_element(*SEARCH_FIELD).send_keys("water")
+@when("user searches for {product}")
+def search_product(context, product):
+    context.driver.find_element(*SEARCH_FIELD).send_keys(product)
     context.driver.find_element(*SEARCH_BTN).click()
-    time.sleep(10)
+    context.driver.wait.until(EC.visibility_of_element_located(PRODUCT_TITLE_LINK))
 
 
 @when("user selects the product from results")
 def select_product(context):
     context.driver.find_element(*PRODUCT_TITLE_LINK).click()
-    time.sleep(3)
+    context.driver.wait.until(EC.visibility_of_element_located(ADD_TO_CART_BTN))
+
 
 @when("user clicks on add to cart button")
 def click_add_to_cart_button(context):
     context.driver.find_element(*ADD_TO_CART_BTN).click()
-    time.sleep(3)
+    context.driver.wait.until(EC.visibility_of_element_located(VIEW_CART_CHECKOUT_BTN))
+
 
 @when("user clicks on view cart & check out button")
 def click_view_cart_checkout_button(context):
     context.driver.find_element(*VIEW_CART_CHECKOUT_BTN).click()
-    time.sleep(5)
+    context.driver.wait.until(EC.visibility_of_element_located(CART_ITEM_TITLE))
 
-@then("cart should contain product")
-def verify_cart_contains_product(context):
+
+@then("cart should contain {product}")
+def verify_cart_contains_product(context, product):
     cart_product = context.driver.find_elements(*CART_ITEM_TITLE)
     assert len(cart_product) > 0, f'Test Failed: Expected 1 product in cart; however, actual number is {len(cart_product)}'
-

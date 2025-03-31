@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-import time
+from selenium.webdriver.support import expected_conditions as EC
 
 
 HELP_HEADING = (By.XPATH, "//h2[contains(., 'Target Help')]")
@@ -14,7 +14,7 @@ BROWSE_HELP_HEADING = (By.XPATH, "//h2[contains(., 'Browse')]")
 @given("navigation to target help page")
 def navigate_to_target_help(context):
     context.driver.get("https://help.target.com/help")
-    time.sleep(3)
+    context.driver.wait.until(EC.visibility_of_element_located(HELP_HEADING))
 
 
 @then("user should see target help heading")
