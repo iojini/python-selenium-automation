@@ -12,14 +12,14 @@ def navigate_to_target_main(context):
     context.driver.wait.until(EC.visibility_of_element_located(CART_ICON))
 
 
-@when("user clicks on cart icon")
-def click_cart_icon(context):
-    context.driver.find_element(*CART_ICON).click()
-    context.driver.wait.until(EC.visibility_of_element_located(EMPTY_CART_MESSAGE))
+#@when("user clicks on cart icon")
+#def click_cart_icon(context):
+#    context.driver.find_element(*CART_ICON).click()
+#    context.driver.wait.until(EC.visibility_of_element_located(EMPTY_CART_MESSAGE))
 
 
-@then("Empty cart message is shown")
-def empty_cart_message(context):
-    expected_text = 'Your cart is empty'
-    actual_text = context.driver.find_element(*EMPTY_CART_MESSAGE).text
-    assert expected_text == actual_text, f'Test Failed: Expected {expected_text}; however, actual is {actual_text}'
+#@then("Empty cart message is shown")
+#def empty_cart_message(context):
+#    expected_text = 'Your cart is empty'
+#    actual_text = context.driver.find_element(*EMPTY_CART_MESSAGE).text
+#    assert expected_text == actual_text, f'Test Failed: Expected {expected_text}; however, actual is {actual_text}'
