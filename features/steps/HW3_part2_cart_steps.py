@@ -3,13 +3,13 @@ from behave import given, when, then
 from selenium.webdriver.support import expected_conditions as EC
 
 
-CART_ICON = (By.CSS_SELECTOR, "a[data-test='@web/CartLink']")
-EMPTY_CART_MESSAGE = (By.XPATH, "//h1[contains(text(), 'Your cart is empty')]")
+#CART_ICON = (By.CSS_SELECTOR, "a[data-test='@web/CartLink']")
+#EMPTY_CART_MESSAGE = (By.XPATH, "//h1[contains(text(), 'Your cart is empty')]")
 
-@given("navigation to target.com")
-def navigate_to_target_main(context):
-    context.driver.get("https://target.com/")
-    context.driver.wait.until(EC.visibility_of_element_located(CART_ICON))
+#@given("navigation to target.com")
+#def navigate_to_target_main(context):
+#    context.driver.get("https://target.com/")
+#    context.driver.wait.until(EC.visibility_of_element_located(CART_ICON))
 
 
 #@when("user clicks on cart icon")

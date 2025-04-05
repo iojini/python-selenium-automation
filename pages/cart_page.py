@@ -4,9 +4,15 @@ from pages.base_page import Page
 
 class CartPage(Page):
     CART_EMPTY_MSG = (By.CSS_SELECTOR, "[data-test='boxEmptyMsg']")
+    CART_ITEM_TITLE = (By.CSS_SELECTOR, "a[data-test='cartItem-linked-title']")
 
     def verify_cart_empty(self):
-        expected_result = 'Your cart is empty'
-        actual_result = self.find_element(*self.CART_EMPTY_MSG).text
-        assert expected_result == actual_result, f'Expected {expected_result} did not match actual {actual_result}'
+        self.verify_text('Your cart is empty', *self.CART_EMPTY_MSG)
 
+    def verify_cart_page_opens(self):
+        self.verify_url(f'{self.base_url}cart')
+
+    def verify_product_in_cart(self, expected_text='twix'):
+        product = self.find_element(*self.CART_ITEM_TITLE)
+        assert expected_text.lower() in product.text.lower(), \
+            f"Expected '{expected_text}' in cart, but got '{product.text}'"
