@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
-from time import sleep
 
 
 class SignInPage(Page):
@@ -9,12 +8,13 @@ class SignInPage(Page):
     PASSWORD_FIELD = (By.ID, "password")
     SIGNIN_BTN = (By.ID, "login")
     SKIP_LINK = (By.LINK_TEXT, "Skip")
+    TERMS_LINK = (By.LINK_TEXT, "Target terms and conditions")
+
 
     def verify_signin_form_loaded(self):
         self.wait_until_visible(*self.EMAIL_FIELD)
 
     def enter_email(self, email):
-        sleep(5)
         self.wait_until_visible(*self.EMAIL_FIELD)
         self.input_text(email, *self.EMAIL_FIELD)
 
@@ -33,3 +33,12 @@ class SignInPage(Page):
 
     def verify_sign_in_form_disappears(self):
         self.wait_until_invisible(*self.SIGNIN_BTN)
+
+    def open_signin_page(self):
+        self.open_url('https://www.target.com/login')
+
+    def click_terms_link(self):
+        self.wait_until_clickable_click(*self.TERMS_LINK)
+
+    def verify_terms_opened(self):
+        self.verify_partial_url('terms-conditions')

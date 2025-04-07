@@ -18,7 +18,7 @@ def click_side_nav_signin(context):
 
 @when("user enters email")
 def enter_email(context):
-    email = "borenger@tmxttvmail.com"
+    email = "*****"
     context.app.sign_in_page.enter_email(email)
 
 
@@ -29,7 +29,7 @@ def click_continue(context):
 
 @when("user enters password")
 def enter_password(context):
-    password = "BorTarget123!"
+    password = "*****"
     context.app.sign_in_page.enter_password(password)
 
 
