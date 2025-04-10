@@ -5,3 +5,4 @@ Feature: Test Scenario for Sign In Navigation
     When user clicks on sign in link in header
     And user clicks on sign in button from the right navigation menu
     Then Sign in form should be displayed
+

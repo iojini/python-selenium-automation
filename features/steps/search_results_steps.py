@@ -13,6 +13,11 @@ PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
 PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
 
 
+@given("Open Target main page")
+def open_target_home(context):
+    context.app.main_page.open_main_page()
+
+
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
@@ -32,6 +37,16 @@ def store_product_name(context):
 def side_nav_click_add_to_cart(context):
     context.driver.find_element(*SIDE_NAV_ADD_TO_CART_BTN).click()
     sleep(5)
+
+
+@when('Hover favorites icon')
+def hover_fav_icon(context):
+    context.app.search_results_page.hover_fav_icon()
+
+
+@then('Favorites tooltip is shown')
+def verify_fav_tooltip(context):
+    context.app.search_results_page.verify_fav_tooltip()
 
 
 @then('Verify correct search results shown for {expected_text}')

@@ -9,6 +9,7 @@ class SignInPage(Page):
     SIGNIN_BTN = (By.ID, "login")
     SKIP_LINK = (By.LINK_TEXT, "Skip")
     TERMS_LINK = (By.LINK_TEXT, "Target terms and conditions")
+    ERROR_MSG = (By.ID, "password--ErrorMessage")
 
 
     def verify_signin_form_loaded(self):
@@ -42,3 +43,6 @@ class SignInPage(Page):
 
     def verify_terms_opened(self):
         self.verify_partial_url('terms-conditions')
+
+    def verify_error_message_displayed(self):
+        self.wait_until_visible(*self.ERROR_MSG)
