@@ -10,7 +10,6 @@ class Header(Page):
 
 
     def search(self, text):
-        print(f'Searching for {text}')
         self.input_text(text, *self.SEARCH_FIELD)
         self.wait_until_clickable_click(*self.SEARCH_BTN)
 

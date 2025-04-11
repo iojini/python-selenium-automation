@@ -1,16 +1,17 @@
 Feature: Target search test cases
 
+#  @smoke
   Scenario: User can search for a tea on Target
     Given Open target main page
     When Search for tea
     Then Verify correct search results shown for tea
-     And Verify tea in URL
+    And Verify tea in URL
 
 #  Scenario: User can search for a iPhone on Target
 #    Given Open target main page
 #    When Search for iPhone
 #    Then Verify correct search results shown for iPhone
-
+#
 #  Scenario: User can search for a dress on Target
 #    Given Open target main page
 #    When Search for dress
@@ -26,6 +27,7 @@ Feature: Target search test cases
     |iPhone       |iPhone         |
     |dress        |dress          |
 
+#  @smoke
   Scenario: User can add a product to cart
     Given Open target main page
     When Search for mug
@@ -41,7 +43,7 @@ Feature: Target search test cases
     When Search for AirPods (3rd Generation)
     Then Verify that every product has a name and an image
 
-Scenario: User can see favorites tooltip for search results
+  Scenario: User can see favorites tooltip for search results
     Given Open Target main page
     When Search for tea
     And Hover favorites icon
